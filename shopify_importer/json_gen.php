@@ -8,9 +8,9 @@ class shopify_json{
 	
 	public function __construct() {
 		$this->set_variables();
-		#$this->get_total_products();
-		#$this->get_product_total_pages();
-		#$this->get_product_json();
+		$this->get_total_products();
+		$this->get_product_total_pages();
+		$this->get_product_json();
 		
 		$this->get_total_collections();
 		$this->get_collections_total_pages();
