@@ -92,12 +92,23 @@ function get_url() {
 function save_file($name,$data){
 	file_put_contents(dataFOLDER.$name,$data);
 }
-
+ 
 
 function saveLOG(){
 	global $messageLogs;
-	save_file('log.html',implode(" ",$messageLogs));
-	
+	if(defined('log_type') && log_type == 'json_generator'){
+		save_file('json_fetch_log.html',implode(" ",$messageLogs));
+		return true;
+	}
+	if(defined('log_type') && log_type == 'product_import'){
+		save_file('product_import_log.html',implode(" ",$messageLogs));
+		return true;
+	}
+	if(!defined('log_type')){
+		save_file(date('h_i_s.html'),implode(" ",$messageLogs));
+		return true;
+		
+	} 
 }
 ?>
  
