@@ -7,6 +7,7 @@ class shopify_json{
 	
 	
 	public function __construct() {
+		define('log_type','json_generator');
 		$this->set_variables();
 		$this->get_total_products();
 		$this->get_product_total_pages();
