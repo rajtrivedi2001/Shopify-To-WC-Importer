@@ -14,6 +14,7 @@ define('product_type_term','Product Type');
 
 define('product_status','publish');
 define('product_post_type','product');
+define('product_varient_post_type','product_variation');
 define('product_author',1);
 
 
