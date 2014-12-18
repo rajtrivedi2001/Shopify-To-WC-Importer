@@ -92,7 +92,7 @@ function get_url() {
 function save_file($name,$data){
 	file_put_contents(dataFOLDER.$name,$data);
 }
- 
+
 
 function saveLOG(){
 	global $messageLogs;
