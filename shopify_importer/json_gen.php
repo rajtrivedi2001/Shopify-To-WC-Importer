@@ -6,17 +6,14 @@ class shopify_json{
 	public $total_collections_pages;
 	
 	
-	public function __construct() {
+	public function __construct($runRequest = false) {
 		define('log_type','json_generator');
 		$this->set_variables();
-		$this->get_total_products();
-		$this->get_product_total_pages();
-		$this->get_product_json();
-		
-		$this->get_total_collections();
-		$this->get_collections_total_pages();
-		$this->get_collections_json();		
+		if($runRequest){
+			$this->run_generator();
+		}		
 	}
+
 	
 	private function set_variables(){
 		$this->total_products = '';
@@ -24,7 +21,18 @@ class shopify_json{
 		$this->total_collections = '';
 		$this->total_collections_pages = '';
 	}
-	
+
+
+	private function run_generator(){
+		$this->get_total_products();
+		$this->get_total_collections();
+		/*****************************/		
+		$this->get_product_total_pages();
+		$this->get_collections_total_pages();
+		/*****************************/
+		$this->get_product_json();
+		$this->get_collections_json();
+	}	
 	
 	public  function get_total_products(){
 		$request = request(product_count_url);
@@ -110,16 +118,16 @@ class shopify_json{
 			$i++;
 			text('<hr/>',false);
 		}
+	}	 
+
+  
+		
+	public function get_collections_product_json($product_id){
+		$page_count = $this->total_collections_pages;
+		$url = collections_json_url.'?limit='.collections_fetch_limit.'&product_id='.$product_id.'&page='.$i;
+		$request = request($url);
+		return $request;
 	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 } 
 
 ?>
